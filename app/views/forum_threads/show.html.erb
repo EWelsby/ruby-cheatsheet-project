@@ -1,0 +1,50 @@
+<!-- show a thread in detail -->
+
+<div id="thread_header">
+
+	<center>
+	<div class="threadTitle">
+
+		<%# show the title %>
+		<h3><%=h @forum_thread.title %></h3>
+
+		<%# created by information %>
+		Created By <%= link_to_user(@forum_thread.user) %> at <%= @forum_thread.created_at %>		
+
+
+		<%# show the edit button if I'm the owner %>
+		<% if @forum_thread.user == current_user -%>
+			<br />
+			<%= link_to '[Edit]', edit_forum_thread_path(@forum_thread) %>
+		<% end -%>
+
+		
+
+	</div>
+	</center>
+
+</div>
+
+
+
+
+
+<%# Show the paginated post result array using the single post template %>
+<table class="postTable">
+<%= render :partial => @forum_posts, :object =>  @forum_posts %>
+</table>
+
+
+
+<br />
+<center>
+<%= link_to 'New Post', new_forum_thread_forum_post_path(@forum_thread) %>
+</center>
+
+<%# Show the pagination page selection %>
+<br />
+<center>
+<%= will_paginate @forum_posts %>
+<br />
+<%= link_to 'Back to thread index', forum_threads_path %>
+</center>

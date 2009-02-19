@@ -1,0 +1,31 @@
+<%# Display a single object inside of a pre-existing table %>
+
+	<tr><td class="postInformation">
+
+		<!-- show the avatar -->
+		<%= render :partial => 'users/user_avatar.html.erb', :locals => {:user => forum_post.user}  %>
+
+		<br />
+
+		<div class="timestamp">
+		<%= forum_post.created_at %>
+		</div>
+
+	</td><td class="postContent">
+
+		<!-- Show the post content -->
+		<%= h(forum_post.content) %>
+
+		<% if forum_post.created_at != forum_post.updated_at -%>
+			<br/><br/>
+			<i>Last Edited at <%= h(forum_post.updated_at) %></i>
+		<% end -%>
+
+		<% if forum_post.user == current_user -%>
+			<div class="postOptions">
+			<%= link_to 'Edit', edit_forum_thread_forum_post_path(forum_post.forum_thread,forum_post) %>
+			<%#= link_to 'Delete', destroy_forum_thread_forum_post_path(forum_post.forum_thread,forum_post) %>
+			</div>
+		<% end -%>
+
+	</td></tr>

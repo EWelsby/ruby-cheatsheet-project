@@ -1,0 +1,35 @@
+<center> 
+
+<%# Show if they are logged in or not %>
+<%= render :partial => 'users/user_bar.html.erb', :object => current_user  %>
+
+<br /><br />
+
+<%= link_to 'Create New Thread', new_forum_thread_path %>
+
+<br /><br />
+
+</center>
+
+<table class="threadTable">
+
+  <tr class="threadIndex">
+    <td class="threadTitle">
+      Title
+    </td>
+
+    <td class="threadStarter">
+      Started By
+    </td>
+  </tr>
+
+  <%= render :partial => @forum_threads %>
+
+</table>
+
+<br />
+
+<%# Show the pagination page selection %>
+<center>
+<%= will_paginate @forum_posts %>
+</center>

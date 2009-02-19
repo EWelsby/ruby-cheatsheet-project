@@ -1,0 +1,12 @@
+<%# Display a single thread inside of a pre-existing table %>
+
+
+  <tr class="threadEntry">
+    <td class="threadTitle">
+      <%= link_to h(forum_thread.title), forum_thread_path(forum_thread) %>
+    </td>
+
+    <td class="threadStarter">
+      <%= link_to_user(forum_thread.user) %>
+    </td>
+  </tr>
